@@ -1,52 +1,260 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizing Conflict and Human Suffering through Data</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visualizing Conflict & Human Suffering Through Data — TriV-Z</title>
+  <meta name="description" content="Project website: Comparing wars by location and purpose through data visualization">
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --panel:#15171c;
+      --soft:#1e2128;
+      --text:#e6e6e6;
+      --muted:#a8b0bf;
+      --accent:#62d2a2;
+      --badge:#22252d;
+      --max:1100px;
+      --radius:18px;
+      --shadow:0 6px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max);margin-inline:auto;padding:20px}
+    header{
+      position:sticky;top:0;z-index:10;
+      background:linear-gradient(180deg, rgba(11,12,16,.95), rgba(11,12,16,.7));
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid #1f2330;
+    }
+    .nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;flex-direction:column;gap:6px}
+    h1{margin:0;font-size:22px}
+    .subtitle{color:var(--muted);font-size:14px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{
+      background:var(--badge);border:1px solid #2a2e3a;border-radius:999px;
+      padding:6px 12px;font-size:13px;color:var(--text)
+    }
+    nav ul{display:flex;gap:10px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+    nav a{
+      display:block;
+      padding:8px 12px;
+      border-radius:10px;
+      background:transparent;
+      border:1px solid #262a36;
+    }
+    nav a:hover{background:#1b1f2a}
+    .banner{
+      background:#1f1b0a;
+      border:1px solid #3a320f;
+      color:#ffe8a0;
+      padding:10px 12px;
+      border-radius:12px;
+      margin:14px 0;
+      font-size:13px
+    }
+    main{padding:18px 0}
+    .hero{
+      background:var(--panel);
+      border:1px solid #242735;
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow)
+    }
+    .hero h2{margin:0 0 6px 0;font-size:20px}
+    .grid{display:grid;gap:16px;margin-top:16px}
+    @media(min-width:900px){
+      .grid{grid-template-columns:1.2fr .8fr}
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid #242735;
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow)
+    }
+    .card h3{margin-top:0;font-size:18px}
+    .muted{color:var(--muted)}
+    .toc{display:flex;gap:8px;flex-wrap:wrap}
+    .toc a{
+      background:var(--soft);
+      border:1px solid #2b2f3b;
+      border-radius:8px;
+      padding:6px 10px;
+      font-size:13px
+    }
+    .section{margin-top:22px}
+    .section h2{font-size:18px;margin:0 0 8px}
+    .chart-placeholder{
+      display:grid;
+      place-items:center;
+      height:260px;
+      background:var(--soft);
+      border:1px dashed #343a49;
+      border-radius:16px;
+      color:var(--muted);
+      font-size:14px
+    }
+    .kicker{font-size:12px;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
+    footer{
+      margin-top:28px;
+      border-top:1px solid #202431;
+      background:#0b0c10;
+      color:var(--muted)
+    }
+    footer .container{padding-bottom:40px}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Visualizing Conflict and Human Suffering through Data</h1>
-        <h2>Team TriViz</h2>
-        <ul class="team-members">
-            <li>Member 1: [Name]</li>
-            <li>Member 2: [Name]</li>
-            <li>Member 3: [Name]</li>
-        </ul>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#visualizations">Visualizations</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <h1>Visualizing Conflict & Human Suffering Through Data</h1>
+      <div class="subtitle">Group: <strong>TriV-Z</strong></div>
+      <div class="chips" aria-label="Team members">
+        <span class="chip">Somayyeh Eslami</span>
+        <span class="chip">Moein Vadikhayr</span>
+        <span class="chip">Elaheh Sheidaei</span>
+      </div>
+    </div>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#overview">Home</a></li>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#charts">Charts</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#refs">References</a></li>
+      </ul>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <section id="about">
-            <h2>About the Project</h2>
-            <p>
-                This project explores global conflict and human suffering through interactive data visualizations. 
-                We aim to transform complex datasets into accessible, meaningful visuals that highlight humanitarian impacts and global patterns.
-            </p>
-            <p>
-                The dataset includes information on conflict events, casualties, and displacement across various regions.
-            </p>
-        </section>
+<div class="container">
+  <div class="banner" role="status">
+    This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
+  </div>
+</div>
 
-        <section id="visualizations">
-            <h2>Data Visualizations</h2>
-            <p>Upcoming section where we will display interactive charts and maps.</p>
-        </section>
-    </main>
+<main class="container">
+  <!-- HERO / OVERVIEW -->
+  <section id="overview" class="hero" aria-labelledby="title">
+    <div class="kicker">Section Title</div>
+    <h2 id="title">Wars by Location and Purpose</h2>
+    <p class="muted">Short summary: This project analyzes global war patterns by geography and purpose, building visual narratives from data.</p>
+  </section>
 
-    <footer>
-        <p>© 2025 TriViz Team — University of Geneva | Data Visualization Course</p>
-    </footer>
+  <!-- INTRODUCTION -->
+  <section id="intro" class="grid section" aria-label="Introduction and overview">
+    <article class="card">
+      <h3>Introduction</h3>
+      <p>
+        This section introduces what you’ll find in the project: datasets used, comparative categories, and the story behind the visuals.
+        It contains five core visualizations, each addressing different research questions.
+      </p>
+      <div class="section">
+        <h2>What to Expect</h2>
+        <ul>
+          <li>Comparison of wars by continent or region</li>
+          <li>Differences in war purposes across regions</li>
+          <li>Temporal patterns before and after major world events</li>
+        </ul>
+      </div>
+    </article>
+    <aside class="card">
+      <h3>Quick Navigation</h3>
+      <div class="toc">
+        <a href="#q1">Q1</a>
+        <a href="#q2">Q2</a>
+        <a href="#q3">Q3</a>
+        <a href="#charts">Charts</a>
+        <a href="#methods">Methods</a>
+      </div>
+      <p class="muted">Use these links to quickly jump between sections.</p>
+    </aside>
+  </section>
+
+  <!-- RESEARCH QUESTIONS -->
+  <section id="questions" class="section card" aria-labelledby="rq">
+    <h3 id="rq">Research Questions</h3>
+    <ol>
+      <li id="q1">How many wars occurred in each region, and how do purposes vary across them?</li>
+      <li id="q2">How has the number of wars changed over time for each type or purpose?</li>
+      <li id="q3">Which types of wars tend to last longer on average?</li>
+    </ol>
+  </section>
+
+  <!-- CHARTS -->
+  <section id="charts" class="section" aria-labelledby="charts-title">
+    <h2 id="charts-title">Visualizations</h2>
+
+    <div class="section card">
+      <h3>Bar Chart — Number of Wars per Region</h3>
+      <div class="chart-placeholder" data-chart="bar">Bar chart placeholder</div>
+      <p class="muted">Basic frequency comparison by region.</p>
+    </div>
+
+    <div class="section card">
+      <h3>Grouped Bar — War Purpose per Region</h3>
+      <div class="chart-placeholder" data-chart="grouped-bar">Grouped bar placeholder</div>
+      <p class="muted">Comparing subcategories within each region.</p>
+    </div>
+
+    <div class="section card">
+      <h3>Heatmap — Intensity Over Time and Purpose</h3>
+      <div class="chart-placeholder" data-chart="heatmap">Heatmap placeholder</div>
+      <p class="muted">Shows temporal distribution and clustering.</p>
+    </div>
+
+    <div class="section card">
+      <h3>100% Stacked Bar — Percentage Composition of Purposes</h3>
+      <div class="chart-placeholder" data-chart="stacked-100">100% stacked bar placeholder</div>
+      <p class="muted">Shows relative share, not absolute count.</p>
+    </div>
+
+    <div class="section card">
+      <h3>Waffle Chart — Percentage Distribution of a Selected Variable</h3>
+      <div class="chart-placeholder" data-chart="waffle">Waffle chart placeholder</div>
+      <p class="muted">Displays proportions as a grid of small squares.</p>
+    </div>
+  </section>
+
+  <!-- METHODS -->
+  <section id="methods" class="section card" aria-labelledby="methods-title">
+    <h3 id="methods-title">Methods</h3>
+    <p>
+      Outline your data preprocessing steps, variable selection, and visualization tools (e.g., D3.js).  
+      Later, document any combined datasets or extra analysis steps here.
+    </p>
+  </section>
+
+  <!-- REFERENCES -->
+  <section id="refs" class="section card" aria-labelledby="refs-title">
+    <h3 id="refs-title">References</h3>
+    <ul>
+      <li>Wimmer & Min (2009) — Wars by Location and Purpose</li>
+      <li>D3.js Gallery</li>
+      <li>UDATavis, Data2Vis</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© TriV-Z — Visualizing Conflict & Human Suffering Through Data</p>
+  </div>
+</footer>
+
 </body>
 </html>
