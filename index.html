@@ -6,6 +6,10 @@
   <title>Visualizing Conflict & Human Suffering Through Data — TriViz</title>
   <link rel="stylesheet" href="style.css">
   <meta name="description" content="Project website: Comparing wars by location and purpose through data visualization">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+  <script defer src="./app.js"></script>
+
 </head>
 <body>
 
@@ -22,7 +26,7 @@
     </div>
     <nav aria-label="Main navigation">
       <ul>
-        <li><a href="#overview">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#intro">Introduction</a></li>
         <li><a href="#questions">Questions</a></li>
         <li><a href="#charts">Charts</a></li>
@@ -34,20 +38,13 @@
 </header>
 
 <div class="container">
-  <div class="banner" role="status">
+  <div id="home" class="banner" role="status">
     This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
   </div>
 </div>
 
 <main class="container">
-  <!-- HERO / OVERVIEW -->
-  <section id="overview" class="hero" aria-labelledby="title">
-    <div class="kicker"></div>
-    <h2 id="title">Section 1</h2>
-   <p class="muted">Short summary: This project analyzes global war patterns by geography and purpose, building visual narratives from data.</p>
-  </section>
-
-  <!-- INTRODUCTION -->
+    <!-- INTRODUCTION -->
   <section id="intro" class="section card" aria-label="Introduction and overview">
   <h1>WARS BY LOCATION AND PURPOSE (1816–2001)</h1>
   <h3>Introduction</h3>
@@ -60,49 +57,62 @@
 
 
   <!-- RESEARCH QUESTIONS -->
-  <section id="questions" class="section card" aria-labelledby="rq">
-    <h3 id="rq">Research Questions</h3>
-    <ol>
-      <li id="q1">How many wars occurred in each region, and how do purposes vary across them?</li>
-      <li id="q2">How has the number of wars changed over time for each type or purpose?</li>
-      <li id="q3">Which types of wars tend to last longer on average?</li>
-    </ol>
-  </section>
+  
+<section id="questions" class="section card">
+  <h3>Research Questions</h3>
+  <ol>
+    <li>Which ten regions have experienced the highest number of wars?</li>
+    <li>How did the number of wars change before and after 1914 in each region?</li>
+    <li>What temporal patterns emerge in the distribution of wars by region and decade?</li>
+    <li>How does the composition of war purposes vary across regions?</li>
+    <li>What proportion of wars were ethnic compared to non-ethnic?</li>
+    <li>Within each category (Ethnic / Non-ethnic), which three regions experienced the most wars?</li>
+  </ol>
+</section>
+
 
   <!-- CHARTS -->
   <section id="charts" class="section" aria-labelledby="charts-title">
     <h2 id="charts-title">Visualizations</h2>
 
     <div class="section card">
-      <h3>Bar Chart — Number of Wars per Region</h3>
+      <h3>Bar Chart — Which ten regions have experienced the highest number of wars?</h3>
       <div class="chart-placeholder" data-chart="bar">Bar chart placeholder</div>
-      <p class="muted">Basic frequency comparison by region.</p>
+      <p class="muted"> Comparing ten regions with the highest number of wars worldwide.
+      </p>
     </div>
 
     <div class="section card">
-      <h3>Grouped Bar — War Purpose per Region</h3>
+      <h3>Grouped Bar — How did the number of wars change before and after 1914 in each region?</h3>
       <div class="chart-placeholder" data-chart="grouped-bar">Grouped bar placeholder</div>
-      <p class="muted">Comparing subcategories within each region.</p>
+      <p class="muted"> Comparing the number of wars in each region before and after 1914.
+      </p>
     </div>
 
     <div class="section card">
-      <h3>Heatmap — Intensity Over Time and Purpose</h3>
+      <h3>Heatmap — What temporal patterns emerge in the distribution of wars by region and decade?</h3>
       <div class="chart-placeholder" data-chart="heatmap">Heatmap placeholder</div>
-      <p class="muted">Shows temporal distribution and clustering.</p>
+      <p class="muted">The distribution of wars varies across regions and decades, revealing temporal clusters of intense conflict.</p>
     </div>
 
     <div class="section card">
-      <h3>100% Stacked Bar — Percentage Composition of Purposes</h3>
+      <h3>100% Stacked Bar — How does the composition of war purposes vary across regions?</h3>
       <div class="chart-placeholder" data-chart="stacked-100">100% stacked bar placeholder</div>
-      <p class="muted">Shows relative share, not absolute count.</p>
+      <p class="muted">Illustrating  how the relative composition of war purposes differs across regions.</p>
     </div>
 
     <div class="section card">
-      <h3>Waffle Chart — Percentage Distribution of a Selected Variable</h3>
+      <h3>Waffle Chart — What temporal patterns emerge in the distribution of wars by region and decade?</h3>
       <div class="chart-placeholder" data-chart="waffle">Waffle chart placeholder</div>
-      <p class="muted">Displays proportions as a grid of small squares.</p>
+      <p class="muted">The overall proportion of ethnic and non-ethnic wars.</p>
     </div>
-  </section>
+  
+    <div class="section card">
+      <h3>Q6 — Within each category (Ethnic / Non-ethnic), which three regions experienced the most wars?</h3>
+      <div class="chart-placeholder" data-chart="top3-multiples">Top-3 regions chart placeholder</div>
+      <p class="muted">Two panels: Ethnic vs Non-ethnic, showing top-3 regions by count.</p>
+    </div>
+</section>
 
   <!-- METHODS -->
   <section id="methods" class="section card" aria-labelledby="methods-title">
@@ -126,9 +136,10 @@
 
 <footer>
   <div class="container">
-    <p>© TriV-Z — Visualizing Conflict & Human Suffering Through Data</p>
+    <p>© TriViz— Visualizing Conflict & Human Suffering Through Data</p>
   </div>
 </footer>
+
 
 </body>
 </html>

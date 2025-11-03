@@ -1,114 +1,142 @@
 
-    :root{
-      --bg:#0b0c10;
-      --panel:#15171c;
-      --soft:#1e2128;
-      --text:#e6e6e6;
-      --muted:#a8b0bf;
-      --accent:#62d2a2;
-      --badge:#22252d;
-      --max:1100px;
-      --radius:18px;
-      --shadow:0 6px 30px rgba(0,0,0,.25);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height:1.6;
-    }
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:var(--max);margin-inline:auto;padding:20px}
-    header{
-      position:sticky;top:0;z-index:10;
-      background:linear-gradient(180deg, rgba(11,12,16,.95), rgba(11,12,16,.7));
-      backdrop-filter:blur(6px);
-      border-bottom:1px solid #1f2330;
-    }
-    p {
-        text-align: justify;
-    }
-    .nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;flex-direction:column;gap:6px}
-    h1{margin:0;font-size:22px}
-    .subtitle{color:var(--muted);font-size:14px}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .chip{
-      background:var(--badge);border:1px solid #2a2e3a;border-radius:999px;
-      padding:6px 12px;font-size:13px;color:var(--text)
-    }
-    nav ul{display:flex;gap:10px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-    nav a{
-      display:block;
-      padding:8px 12px;
-      border-radius:10px;
-      background:transparent;
-      border:1px solid #262a36;
-    }
-    nav a:hover{background:#1b1f2a}
-    .banner{
-      background:#1f1b0a;
-      border:1px solid #3a320f;
-      color:#ffe8a0;
-      padding:10px 12px;
-      border-radius:12px;
-      margin:8px 0;
-      font-size:13px
-    }
-    main{padding:18px 0}
-    .hero{
-      background:var(--panel);
-      border:1px solid #242735;
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:var(--shadow)
-    }
-    .hero h2{margin:0 0 6px 0;font-size:20px}
-    .grid{display:grid;gap:16px;margin-top:16px}
-    @media(min-width:900px){
-      .grid{grid-template-columns:1.2fr .8fr}
-    }
-    .card{
-      background:var(--panel);
-      border:1px solid #242735;
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:var(--shadow)
-    }
-    .card h3{margin-top:0;font-size:18px}
-    .muted{color:var(--muted)}
-    .toc{display:flex;gap:8px;flex-wrap:wrap}
-    .toc a{
-      background:var(--soft);
-      border:1px solid #2b2f3b;
-      border-radius:8px;
-      padding:6px 10px;
-      font-size:13px
-    }
-    #overview.section {
-    margin-top: 2px;
-    }
-    .section{margin-top:22px}
-    .section h2{font-size:18px;margin:0 0 8px}
-    .chart-placeholder{
-      display:grid;
-      place-items:center;
-      height:260px;
-      background:var(--soft);
-      border:1px dashed #343a49;
-      border-radius:16px;
-      color:var(--muted);
-      font-size:14px
-    }
-    .kicker{font-size:12px;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
-    footer{
-      margin-top:28px;
-      border-top:1px solid #202431;
-      background:#0b0c10;
-      color:var(--muted)
-    }
-    footer .container{padding-bottom:40px}
+:root{
+  --bg:#0b0c10;
+  --panel:#15171c;
+  --soft:#1e2128;
+  --text:#e6e6e6;
+  --muted:#a8b0bf;
+  --accent:#62d2a2;
+  --badge:#22252d;
+  --max:1100px;
+  --radius:18px;
+  --shadow:0 6px 30px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height:1.6;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:var(--max);margin-inline:auto;padding:12px}
+header{
+  position:sticky;top:0;z-index:10;
+  background:linear-gradient(180deg, rgba(11,12,16,.95), rgba(11,12,16,.7));
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid #1f2330;
+}
+p {
+    text-align: justify;
+}
+.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;flex-direction:column;gap:6px}
+h1{margin:0;font-size:22px}
+.subtitle{color:var(--muted);font-size:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{
+  background:var(--badge);border:1px solid #2a2e3a;border-radius:999px;
+  padding:6px 12px;font-size:13px;color:var(--text)
+}
+nav ul{display:flex;gap:10px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{
+  display:block;
+  padding:8px 12px;
+  border-radius:10px;
+  background:transparent;
+  border:1px solid #262a36;
+}
+nav a:hover{background:#1b1f2a}
+.banner{
+  background:#1f1b0a;
+  border:1px solid #3a320f;
+  color:#ffe8a0;
+  padding:10px 12px;
+  border-radius:12px;
+  margin:2px 0;
+  font-size:13px;
+  
+}
+main{padding:18px 0}
+.hero{
+  background:var(--panel);
+  border:1px solid #242735;
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow)
+}
+.hero h2{margin:0 0 6px 0;font-size:20px}
+.grid{display:grid;gap:16px;margin-top:16px}
+@media(min-width:900px){
+  .grid{grid-template-columns:1.2fr .8fr}
+}
+.card{
+  background:var(--panel);
+  border:1px solid #242735;
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow)
+}
+.card h3{margin-top:0;font-size:18px}
+.muted{color:var(--muted)}
+.toc{display:flex;gap:8px;flex-wrap:wrap}
+.toc a{
+  background:var(--soft);
+  border:1px solid #2b2f3b;
+  border-radius:8px;
+  padding:6px 10px;
+  font-size:13px
+}
+#intro.section {
+margin-top: 2px;
+}
+.section{margin-top:12px}
+.section h2{font-size:18px;margin:0 0 8px}
+.chart-placeholder{
+  display:grid;
+  place-items:center;
+  height:260px;
+  background:var(--soft);
+  border:1px dashed #343a49;
+  border-radius:16px;
+  color:var(--muted);
+  font-size:14px
+}
+.kicker{font-size:12px;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
+footer{
+  margin-top:28px;
+  border-top:1px solid #202431;
+  background:#0b0c10;
+  color:var(--muted)
+}
+footer .container{padding-bottom:40px}
+/* Mounted chart state: replace dashed placeholder frame with a soft panel */
+.chart-placeholder.chart-mounted{
+border:1px solid #242735;
+background:var(--panel);
+border-radius:16px;
+padding:12px;
+height:auto; /* let the chart define height */
+overflow:hidden; /* round the inner svg corners */
+}
+
+/* Make the inner figure/svg fit nicely */
+.chart-placeholder.chart-mounted figure.plot, 
+.chart-placeholder.chart-mounted svg{
+display:block;
+max-width:100%;
+}
+
+/* Optional: lighter gridline color tweak via CSS variables if Plot honors them */
+:root{
+--plot-grid-color:#2e3444;
+--plot-foreground-color:#aeb6c7;
+}
+/* offset for sticky header + smooth scroll */
+html {
+  scroll-padding-top: 190px; /* بسته به ارتفاع هدرِ تو؛ 80–120 هم اوکیه */
+  scroll-behavior: smooth;
+}
