@@ -137,6 +137,17 @@ max-width:100%;
 }
 /* offset for sticky header + smooth scroll */
 html {
-  scroll-padding-top: 190px; /* بسته به ارتفاع هدرِ تو؛ 80–120 هم اوکیه */
   scroll-behavior: smooth;
+}
+html.page-section1{
+  scroll-padding-top: 150px; /* بسته به ارتفاع هدرِ تو؛ 80–120 هم اوکیه */
+}
+html.page-section2{
+  scroll-padding-top: 70px;
+}
+.chart-placeholder2 svg {
+  display: block;
+  margin: 0 auto;       /* center the SVG */
+  max-width: 100%;
+  height: auto;
 }

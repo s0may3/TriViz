@@ -1,0 +1,87 @@
+<!doctype html>
+<html  class="page-section2" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriViz — Section 2 (War Duration Distributions)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Distribution analysis of war durations: histogram, violin, and boxplot" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+  <script defer src="./section2.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <h1>Comparative Analysis of War Patterns Across Regions and Time</h1>
+        
+        <div class="chips" aria-label="Team members">
+          
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#charts">Charts</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div id="home" class="banner" role="status">
+      This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
+    </div>
+  </div>
+  
+
+<main class="container">
+
+  <!-- Intro -->
+  <section id="intro" class="section card" aria-label="Intro">
+    <h2>About This Section</h2>
+    <p class="muted">
+      This section explores how long wars typically last. We start with an overall histogram,
+      then compare distributions by war purpose, and finally summarize spread and central tendency with boxplots.
+      Most wars in the dataset are short and end within a few years, regardless of their purpose.
+Only a small number of wars—especially ethnic and secessionist ones—last much longer, creating a long-tailed distribution of conflict duration.
+
+    </p>
+  </section>
+
+  <!-- Histogram -->
+  <section id="charts" class="section card">
+    <h3>Histogram — War Durations (Years)</h3>
+    <div class="chart-placeholder2" data-chart="s2-hist">Histogram placeholder</div>
+    <p class="muted">A binned distribution showing how many wars fall into each duration range.</p>
+  </section>
+
+  <!-- Violin -->
+  <section class="section card">
+    <h3>Violin Plot — Duration by Purpose: Distribution shape of war durations across the top eight purposes.</h3>
+    <div class="chart-placeholder2" data-chart="s2-violin">Violin placeholder</div>
+    <p class="muted">Most wars, regardless of their purpose, are short-lived — usually lasting less than five years.</p>
+  </section>
+
+  <!-- Boxplot -->
+  <section class="section card">
+    <h3>Boxplot — Duration by Purpose: Median, quartiles, and outliers of war durations grouped by purpose.</h3>
+    <div class="chart-placeholder2" data-chart="s2-box">Boxplot placeholder</div>
+    <p class="muted">Most wars — regardless of their purpose — are short-term, but in certain categories, such as ethnic civil wars, there’s a much higher chance of very long, drawn-out conflicts.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© TriViz — Visualizing Conflict & Human Suffering Through Data</p>
+  </div>
+</footer>
+
+</body>
+</html>
