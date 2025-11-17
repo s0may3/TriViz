@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="page-section3" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriViz — Section 3 (War Timeline Visualization)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Temporal analysis of wars over time using line chart visualization." />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+  <script defer src="./section3.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <h1>Comparative Analysis of War Patterns Across Regions and Time</h1>
+        <div class="chips" aria-label="Team members">
+         
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#section-3">Chart</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="home" class="banner" role="status">
+      This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- INTRO -->
+    <section id="intro" class="section card" aria-label="Intro">
+      <h2>About This Section</h2>
+      <p class="muted">
+        This section focuses on the temporal evolution of warfare. Instead of looking at
+        durations or spatial patterns, we ask a simple question: <strong>how often do wars
+        start in each decade between 1816 and 2000 by purpose?</strong>
+      </p>
+    </section>
+
+    <!-- TIMELINE CHART -->
+    <section id="section-3" class="section card" aria-label="Timeline of wars">
+      <h3>Line Chart — Wars Started per Decade, by Purpose (1816–2000)</h3>
+      <div class="chart-placeholder2" data-chart="s3-line">
+        Timeline chart placeholder
+      </div>
+      <p class="muted">
+        Each colored line represents a different war purpose. By tracking these lines across decades, we can see not only how frequently wars
+        occurred, but also how the dominant motives behind them shifted over time —
+        from territorial expansion in the 19th century to more ideological and
+        intra-state conflicts in the 20th century.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© TriViz — Visualizing Conflict & Human Suffering Through Data</p>
+    </div>
+  </footer>
+
+</body>
+</html>

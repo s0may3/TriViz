@@ -78,7 +78,7 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
     const el = document.querySelector('[data-chart="stacked-100"]') || document.querySelector('[data-chart="q2-100stacked"]');
     if (!el) return;
 
-    // فقط top N region
+   
     const base = raw.filter(d=>d.__region && d.__purpose);
     const totals = d3.rollup(base, v=>v.length, d=>d.__region);
     const topSet = new Set(
@@ -108,7 +108,7 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
       height: 340,
       marginBottom: 80,
       y: { grid: true, tickFormat: d3.format(".0%"), domain: [0,1] },
-      x: { domain: regions, tickRotate: -35 },   // خوانایی محور X
+      x: { domain: regions, tickRotate: -35 },  
       color: { legend: true, domain: purposes },
       marks: [ Plot.barY(long, { x:"region", y:"perc", fill:"purpose", tip:true }) ]
     });
@@ -125,7 +125,7 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
 
     const rows = raw.filter(d => d.__region && d.__period !== "Unknown");
 
-    // فقط تاپ N منطقه؛ بقیه حذف (ادغام نمی‌شن)
+    
     const N = LIMITS.q2TopRegions;
     const totals = d3.rollup(rows, v=>v.length, d=>d.__region);
     const topSet = new Set(
@@ -184,7 +184,7 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
       marginLeft: 140,
       color: { scheme: "YlOrRd", legend: true, label: "Count" },
       x: { domain: decades, label: "Decade" },
-      y: { domain: regions, label: "" }, // بدون متن اضافه
+      y: { domain: regions, label: "" }, 
       marks: [ Plot.cell(grid, { x:"decade", y:"region", fill:"value", tip:true }), Plot.frame() ]
     });
     mount(el, fig);

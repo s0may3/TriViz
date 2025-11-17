@@ -26,26 +26,24 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
   const raw = enrich(raw0);
 
  // ---------- Histogram ----------
-// --- Histogram: توزیع مدت جنگ‌ها ---
-// ---------- Histogram (robust) ----------
-// هدف: ستون Duration را اتومات پیدا کنیم، پاکسازی کنیم، و هیستوگرام معنادار رسم کنیم.
+
 {
   const el = document.querySelector('[data-chart="s2-hist"]');
   if (el) {
-    // 1) ستون Duration را پیدا کن (case/space insensitive)
+
     const durationKey = Object.keys(raw[0] || {}).find(k => k && k.trim().toLowerCase() === "duration") || "DURATION";
 
-    // 2) پاکسازی و عددی کردن
+
     const cleaned = raw.map(d => {
       const v = d[durationKey];
-      // تبدیل رشته‌های مثل "12", "12.0", "12,5", " 12 سال " به عدد
+
       const num = (typeof v === "number")
         ? v
         : parseFloat(String(v).replace(/,/g, ".").replace(/[^\d.\-+eE]/g, ""));
       return Number.isFinite(num) && num >= 0 ? num : NaN;
     }).filter(Number.isFinite);
 
-    // 3) اگر خالی شد، پیام بده و برگرد
+
     if (cleaned.length === 0) {
       el.innerHTML = "<div style='padding:12px;color:#888'>No numeric durations found in column <b>"
         + durationKey + "</b>. Check the CSV header/value formatting.</div>";
@@ -53,15 +51,15 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
       return;
     }
 
-    // 4) آستانهٔ پویای نمایش (p95) تا دم‌های خیلی بلند، محور را نابود نکنند
+
     const sorted = cleaned.slice().sort((a,b) => a-b);
     const p95 = d3.quantile(sorted, 0.95);
 
-    // 5) تعداد binها را با یک قانون ساده تعیین کنیم
+
     const n = cleaned.length;
     const thresholds = Math.min(30, Math.max(8, Math.floor(Math.sqrt(n))));
 
-    // 6) رسم هیستوگرام؛ x.domain را روی [0, p95] می‌بندیم (ولی شمارش از کل cleaned است)
+
     const fig = Plot.plot({
       height: 700,
       marginLeft: 60,
@@ -69,8 +67,8 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
       y: { label: "Count", grid: true },
       marks: [
         Plot.rectY(
-          cleaned.map(v => ({ v })),                         // به فرمت آبجکت
-          Plot.binX({ y: "count" }, { x: "v", thresholds: d3.range(0, Math.ceil(p95) + 1, 1) })  // bin بر اساس v
+          cleaned.map(v => ({ v })),                       
+          Plot.binX({ y: "count" }, { x: "v", thresholds: d3.range(0, Math.ceil(p95) + 1, 1) })  
         ),
         Plot.ruleY([0])
       ]
@@ -86,17 +84,17 @@ d3.csv(DATA_URL, d3.autoType).then(raw0 => {
 // ========= Horizontal Violin Plot: Duration by Purpose (D3 v7) =========
 async function drawViolinPlot() {
   const CSV_PATH   = "./data/WarList.csv";
-  const MAX_GROUPS = 8;      // چند Purpose پرتکرار
-  const MAX_YEARS  = 22;     // سقف پیش‌فرض محور مدت؛ اگر لازم شد بالا ببر
-  const BW         = 1.2;    // bandwidth برای KDE
+  const MAX_GROUPS = 8;     
+  const MAX_YEARS  = 22;     
+  const BW         = 1.2;   
   const WIDTH      = 900;
   const HEIGHT     = 460;
   const MARGIN     = { top: 24, right: 24, bottom: 56, left: 220 };
 
-  // رنگ‌ها (تم تیره + دادهٔ جنگی)
+
   const COLOR = {
-    violinFill:  "#7c1c1c",   // قرمز تیره
-    violinStroke:"#d45b5b",   // لبهٔ کم‌اشباع
+    violinFill:  "#7c1c1c",   
+    violinStroke:"#d45b5b",  
     grid:        "#9aa4b2",
     tick:        "#b8c0cc",
     text:        "#ffffff",
@@ -104,7 +102,7 @@ async function drawViolinPlot() {
     median:      "#f2f2f2"
   };
 
-  // کمک‌تابع‌ها
+
   const norm = v => (v == null ? "" : String(v).trim());
   function kernelEpanechnikov(k) {
     return v => {
@@ -118,10 +116,10 @@ async function drawViolinPlot() {
     };
   }
 
-  // خواندن CSV
+  
   const raw = await d3.csv(CSV_PATH, d3.autoType);
 
-  // ساخت duration اگر نبود
+ 
   const data = raw.map(d => {
     const s = +d.start_year, e = +d.end_year;
     const hasDur = d.duration != null && d.duration !== "";
@@ -132,7 +130,7 @@ async function drawViolinPlot() {
     };
   }).filter(d => Number.isFinite(d.duration) && d.duration >= 0);
 
-  // ۸ Purpose پرتکرار
+ 
   const counts = d3.rollup(data, v => v.length, d => d.purpose);
   const topPurposes = Array.from(counts, ([purpose, count]) => ({ purpose, count }))
     .sort((a, b) => d3.descending(a.count, b.count))
@@ -141,7 +139,7 @@ async function drawViolinPlot() {
 
   const filtered = data.filter(d => topPurposes.includes(d.purpose));
 
-  // دامنه‌ی X (سال)
+ 
   const xMax = Math.max(
     MAX_YEARS,
     d3.quantile(filtered, 0.99, d => d.duration) || MAX_YEARS
@@ -151,18 +149,18 @@ async function drawViolinPlot() {
     .domain([0, xMax]).nice()
     .range([MARGIN.left, WIDTH - MARGIN.right]);
 
-  // محور دسته‌ای روی Y (Purpose)
+  
   const y = d3.scaleBand()
     .domain(topPurposes)
     .range([MARGIN.top, HEIGHT - MARGIN.bottom])
     .paddingInner(0.35)
     .paddingOuter(0.25);
 
-  // حداکثر نیم‌ارتفاع ویولن‌ها
+ 
   const maxHalf = Math.min(18, y.bandwidth() * 0.45);
   const widthScale = d3.scaleLinear().range([0, maxHalf]);
 
-  // KDE روی محور X (duration)
+ 
   const xGrid = d3.range(0, xMax + 0.5, 0.5);
   const kde = kernelDensityEstimator(kernelEpanechnikov(BW), xGrid);
 
@@ -184,7 +182,7 @@ async function drawViolinPlot() {
     .attr("width", WIDTH)
     .attr("height", HEIGHT);
 
-  // grid عمودی ملایم
+  
   svg.append("g")
     .attr("stroke", COLOR.grid)
     .attr("stroke-opacity", 0.15)
@@ -196,7 +194,7 @@ async function drawViolinPlot() {
     .attr("y1", MARGIN.top)
     .attr("y2", HEIGHT - MARGIN.bottom);
 
-  // محورها
+
   const gx = svg.append("g")
     .attr("transform", `translate(0,${HEIGHT - MARGIN.bottom})`)
     .call(d3.axisBottom(x).ticks(10));
@@ -211,7 +209,7 @@ async function drawViolinPlot() {
   gy.selectAll("line").attr("stroke", COLOR.tick);
   gy.selectAll("path").attr("stroke", COLOR.tick);
 
-  // برچسب‌ها (سفید)
+ 
   svg.append("text")
     .attr("x", WIDTH - MARGIN.right)
     .attr("y", HEIGHT - 8)
@@ -229,7 +227,7 @@ async function drawViolinPlot() {
     .attr("fill", COLOR.text)
     .text("Purpose");
 
-  // شکل ویولن افقی
+
   const area = d3.area()
     .y0(d => {
       const cy = y(d.__purpose__) + y.bandwidth() / 2;
@@ -255,7 +253,7 @@ async function drawViolinPlot() {
     .attr("stroke", COLOR.violinStroke)
     .attr("opacity", 0.9);
 
-  // Median عمودی برای هر گروه
+
   const medians = Array.from(grouped, ([purpose, arr]) => ({
     purpose,
     median: d3.median(arr, d => d.duration)
@@ -276,7 +274,7 @@ async function drawViolinPlot() {
     .append("title")
     .text(d => `Median: ${d.median?.toFixed(2)} yrs`);
 
-  // نقاط خام (jitter) — افقی روی X، عمودی با کمی نویز داخل باند
+
   const jitter = y.bandwidth() * 0.35;
   svg.append("g")
     .attr("fill", COLOR.dots)
@@ -289,7 +287,7 @@ async function drawViolinPlot() {
     .attr("cy", d => y(d.purpose) + y.bandwidth() / 2 + (Math.random() - 0.5) * jitter);
 }
 
-// صدا بزن
+
 drawViolinPlot();
 
 
@@ -298,24 +296,24 @@ drawViolinPlot();
   // ========= Horizontal Box Plot: Duration by Purpose (D3 v7) =========
 async function drawBoxPlot() {
   const CSV_PATH   = "./data/WarList.csv";
-  const MAX_GROUPS = 8;      // چند Purpose پرتکرار
-  const MAX_YEARS  = 22;     // سقف اولیه محور X؛ اگر لازم شد بالا ببر
+  const MAX_GROUPS = 8;    
+  const MAX_YEARS  = 22;     
   const WIDTH      = 900;
   const HEIGHT     = 420;
   const MARGIN     = { top: 24, right: 24, bottom: 56, left: 220 };
 
-  // پالت (هماهنگ با ویولن‌پلات)
+
   const COLOR = {
-    boxFill:    "#7c1c1c",   // پرِ جعبه
-    boxStroke:  "#d45b5b",   // کادر/ویسکر
-    median:     "#ffffff",   // خط میانه
-    outlier:    "#e6e6e6",   // نقاط بیرون‌زن
+    boxFill:    "#7c1c1c",   
+    boxStroke:  "#d45b5b",   
+    median:     "#ffffff",  
+    outlier:    "#e6e6e6",   
     grid:       "#9aa4b2",
     tick:       "#b8c0cc",
     text:       "#ffffff"
   };
 
-  // خواندن CSV و ساخت duration در صورت نبود
+  
   const norm = v => (v == null ? "" : String(v).trim());
   const raw = await d3.csv(CSV_PATH, d3.autoType);
   const rows = raw.map(d => {
@@ -328,7 +326,7 @@ async function drawBoxPlot() {
     };
   }).filter(d => Number.isFinite(d.duration) && d.duration >= 0);
 
-  // انتخاب ۸ Purpose پرتکرار
+
   const counts = d3.rollup(rows, v => v.length, d => d.purpose);
   const topPurposes = Array.from(counts, ([purpose, count]) => ({ purpose, count }))
     .sort((a, b) => d3.descending(a.count, b.count))
@@ -337,10 +335,10 @@ async function drawBoxPlot() {
 
   const data = rows.filter(d => topPurposes.includes(d.purpose));
 
-  // گروه‌بندی
+  
   const grouped = d3.group(data, d => d.purpose);
 
-  // محاسبهٔ آمار جعبه‌ای برای هر گروه
+ 
   function stats(arr) {
     const sorted = arr.map(d => d.duration).sort(d3.ascending);
     const n = sorted.length;
@@ -352,7 +350,7 @@ async function drawBoxPlot() {
     const loFence = q1 - 1.5 * iqr;
     const hiFence = q3 + 1.5 * iqr;
 
-    // نزدیک‌ترین نمونه به فنس‌ها (whiskers)
+   
     let low = sorted[0];
     for (let v of sorted) { if (v >= loFence) { low = v; break; } }
     let high = sorted[n - 1];
@@ -367,7 +365,7 @@ async function drawBoxPlot() {
     return { purpose, ...s };
   }).filter(b => b && Number.isFinite(b.q1));
 
-  // محور‌ها
+ 
   const xMax = Math.max(
     MAX_YEARS,
     d3.max(boxes, b => b.high ?? b.q3 ?? 0) || MAX_YEARS
@@ -383,7 +381,7 @@ async function drawBoxPlot() {
     .paddingInner(0.35)
     .paddingOuter(0.25);
 
-  const boxH = Math.min(20, y.bandwidth() * 0.6);  // ضخامت جعبه
+  const boxH = Math.min(20, y.bandwidth() * 0.6);  
 
   // SVG
   const root = d3.select('[data-chart="s2-box"]');
@@ -392,7 +390,7 @@ async function drawBoxPlot() {
     .attr("width", WIDTH)
     .attr("height", HEIGHT);
 
-  // Grid عمودی
+ 
   svg.append("g")
     .attr("stroke", COLOR.grid)
     .attr("stroke-opacity", 0.15)
@@ -404,7 +402,7 @@ async function drawBoxPlot() {
     .attr("y1", MARGIN.top)
     .attr("y2", HEIGHT - MARGIN.bottom);
 
-  // محور‌ها
+ 
   const gx = svg.append("g")
     .attr("transform", `translate(0,${HEIGHT - MARGIN.bottom})`)
     .call(d3.axisBottom(x).ticks(10));
@@ -419,7 +417,7 @@ async function drawBoxPlot() {
   gy.selectAll("line").attr("stroke", COLOR.tick);
   gy.selectAll("path").attr("stroke", COLOR.tick);
 
-  // برچسب‌ها
+ 
   svg.append("text")
     .attr("x", WIDTH - MARGIN.right)
     .attr("y", HEIGHT - 8)
@@ -437,9 +435,9 @@ async function drawBoxPlot() {
     .attr("fill", COLOR.text)
     .text("Purpose");
 
-  // --- رسم جعبه‌ها ---
 
-  // 1) خط ویسکر (low تا high)
+
+  
   svg.append("g")
     .selectAll("line.whisker")
     .data(boxes)
@@ -453,7 +451,7 @@ async function drawBoxPlot() {
     .attr("stroke-width", 1.5)
     .attr("opacity", 0.9);
 
-  // 2) کلاهک‌های ویسکر
+
   svg.append("g")
     .selectAll("line.whisker-cap-low")
     .data(boxes)
@@ -478,7 +476,7 @@ async function drawBoxPlot() {
     .attr("stroke", COLOR.boxStroke)
     .attr("stroke-width", 1.5);
 
-  // 3) جعبه (Q1 تا Q3)
+ 
   svg.append("g")
     .selectAll("rect.box")
     .data(boxes)
@@ -493,7 +491,7 @@ async function drawBoxPlot() {
     .attr("stroke", COLOR.boxStroke)
     .attr("stroke-width", 1.8);
 
-  // 4) خط میانه (Median)
+ 
   svg.append("g")
     .selectAll("line.median")
     .data(boxes)
@@ -508,7 +506,7 @@ async function drawBoxPlot() {
     .append("title")
     .text(d => `Median: ${d.q2?.toFixed(2)} yrs`);
 
-  // 5) نقاط Outlier
+ 
   svg.append("g")
     .attr("fill", COLOR.outlier)
     .attr("fill-opacity", 0.6)
@@ -521,6 +519,6 @@ async function drawBoxPlot() {
     .attr("cy", d => y(d.purpose) + y.bandwidth()/2);
 }
 
-// صدا بزن
+
 drawBoxPlot();
 })

@@ -145,6 +145,9 @@ html.page-section1{
 html.page-section2{
   scroll-padding-top: 70px;
 }
+html.page-section3{
+  scroll-padding-top: 70px;
+}
 .chart-placeholder2 svg {
   display: block;
   margin: 0 auto;       /* center the SVG */
