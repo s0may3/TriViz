@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="page-section4" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriViz — Section 4 (Global Conflict Visualization)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Global conflict visualization using choropleth, bubble map, and regional dumbbell chart." />
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+  <script defer src="./section4.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <h1>Comparative Analysis of War Patterns Across Regions and Time</h1>
+        <div class="chips" aria-label="Team members">
+          <!-- optional team chips -->
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#section-4">Charts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="home" class="banner" role="status">
+      This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- INTRO -->
+    <section id="intro" class="section card" aria-label="Intro">
+      <h2>Global Conflict Visualization</h2>
+      <p class="muted">
+        This section focuses on geographic perspectives of war: where wars occur, how long they
+        tend to last in different locations, and how intense conflict has been across broad
+        world regions. We combine a choropleth map, a bubble (proportional symbol) map, and a
+        regional dumbbell chart to summarize war frequency and duration in a spatially-aware way.
+      </p>
+    </section>
+
+    <!-- CHOROPLETH -->
+    <section id="section-4" class="section card" aria-label="Choropleth of wars">
+      <h3>Choropleth Map — Number of Wars per Country</h3>
+      <div class="chart-placeholder2" data-chart="s4-choropleth">
+        Choropleth placeholder
+      </div>
+      <p class="muted">
+        Countries are shaded according to how many wars in the dataset are associated with
+        their territory. Darker shades indicate locations with a higher frequency of recorded
+        wars over the 1816–2001 period.
+      </p>
+    </section>
+
+    <!-- BUBBLE MAP -->
+    <section class="section card" aria-label="Bubble map of durations">
+      <h3>Bubble Map — Average War Duration per Country</h3>
+      <div class="chart-placeholder2" data-chart="s4-bubble">
+        Bubble map placeholder
+      </div>
+      <p class="muted">
+        On top of a neutral world map, each country that appears in the dataset is marked with
+        a circle whose size reflects the average duration of wars fought there. This highlights
+        countries where conflicts tend to be unusually short or long, in a geographically
+        intuitive way.
+      </p>
+    </section>
+
+    <!-- REGIONAL DUMBBELL -->
+    <section class="section card" aria-label="Regional dumbbell chart">
+      <h3>Regional Dumbbell Chart — War Frequency vs Average Duration</h3>
+      <div class="chart-placeholder2" data-chart="s4-dumbbell">
+        Dumbbell chart placeholder
+      </div>
+      <p class="muted">
+        For the regions with the most recorded wars, this dumbbell chart compares two
+        normalized metrics side by side: how frequently wars occur and how long they last
+        on average. Each horizontal line represents a geographic region, with endpoints
+        showing its relative war frequency and relative average duration on a common scale.
+      </p>
+    </section>
+        <!-- BIVARIATE CHOROPLETH -->
+        <section class="section card" aria-label="Bivariate choropleth">
+            <h3>Bivariate Choropleth Map — War Frequency × Average Duration</h3>
+            <div class="chart-placeholder2" data-chart="s4-bivariate">
+              Bivariate choropleth placeholder
+            </div>
+            <p class="muted">
+              This map encodes two dimensions of conflict intensity at the same time:
+              how frequently wars occur in each country (war count) and how long they last
+              on average (duration). Countries are grouped into categories such as
+              “High frequency / High duration” or “Low frequency / Low duration”, allowing us
+              to quickly spot places where conflict is both frequent and protracted.
+            </p>
+          </section>
+      
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© TriViz — Visualizing Conflict & Human Suffering Through Data</p>
+    </div>
+  </footer>
+
+</body>
+</html>
