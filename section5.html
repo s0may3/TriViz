@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="page-section5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriViz — Section 5 (Network & Flows)</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Section 5 — Degree centrality and Sankey flow visualization based on the war dataset." />
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3"></script>
+
+  <!-- Section 5 logic -->
+  <script defer src="./section5.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <h1>Comparative Analysis of War Patterns Across Regions and Time</h1>
+        <div class="chips" aria-label="Team members">
+          <!-- optional team chips -->
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#section-5">Charts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="home" class="banner" role="status">
+      This website is currently optimized for desktop view. Some charts may not display properly on smaller screens.
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- INTRO -->
+    <section id="intro" class="section card" aria-label="Intro">
+      <h2>Network-Based View of Conflicts</h2>
+      <p class="muted">
+        In this section, wars are modeled as a network: Countries are nodes and conflicts are links.
+        two network visualization purposed : Bubble	hierarchy and Sankey Diagram.
+        
+      </p>
+    </section>
+
+    <!-- SECTION 5 CHARTS -->
+    <section id="section-5" class="section card" aria-label="Section 5 charts">
+      <h3>Section 5 — Key Network Insights</h3>
+
+      
+
+      <!-- 5.2 -->
+      <article class="subsection">
+        <h4>Sankey Diagram (Region → Region Flows)</h4> 
+        <p class="muted">
+          A Sankey diagram showing aggregate flows between locations (regions)
+and war purposes. Link thickness encodes the number of conflicts for
+each region–purpose combination.
+        </p>
+        <div class="chart-placeholder2" data-chart="s5-sankey">
+          Sankey diagram
+        </div>
+      </article>
+
+            <!-- 5.3 -->
+      <article class="subsection">
+        <h4>Bubble Hierarchy: War Purpose → Region</h4>
+        <p class="muted">
+          A circle-packing hierarchy where each large bubble represents a war purpose and
+          the inner bubbles represent regions. Bubble size is proportional to the number
+          of wars in each region–purpose subtree.
+        </p>
+        <div class="chart-placeholder2" data-chart="s5-bubble">
+          Bubble hierarchy
+        </div>
+      </article>
+
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© TriViz — Visualizing Conflict & Human Suffering Through Data</p>
+    </div>
+  </footer>
+
+</body>
+</html>
